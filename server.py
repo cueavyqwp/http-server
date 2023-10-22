@@ -68,7 +68,6 @@ class server :
                     else :
                         break
                 for line in text + requests[ i : ] :
-                    print([ re.split( "\\s*=\\s*" , item ) for item in re.split( "\\s*&\\s*" , line ) ])
                     if line and "=" in line : args.update( dict ( [ re.split( "\\s*=\\s*" , item ) for item in re.split( "\\s*&\\s*" , line ) ] ) )
             except :
                 self.error( "error at get requests :" )
@@ -96,7 +95,7 @@ class server :
                 if os.path.exists( i ) :
                     path = i
                     break
-        if path :
+        if os.path.exists( path ) :
             with open( path , "rb" ) as file : data = file.read()
         else :
             data = b""
